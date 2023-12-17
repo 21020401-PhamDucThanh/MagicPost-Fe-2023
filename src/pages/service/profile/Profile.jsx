@@ -1,4 +1,5 @@
 import "./profile.scss";
+import { Link } from "react-router-dom";
 import Chart from "../components/chart/Chart";
 import List from "../components/table/Table";
 import Sidebar from "../sidebar/Sidebar";
@@ -8,11 +9,12 @@ const Profile = () => {
     <div className="profile">
       <Sidebar />
       <div className="profileContainer">
-        <br />
-        <br />
         <div className="top">
           <div className="left">
+            <Link to="/service/edit_profile">
             <div className="editButton">Edit</div>
+            </Link>
+            
             <h1 className="title">Information</h1>
             <div className="item">
               <img

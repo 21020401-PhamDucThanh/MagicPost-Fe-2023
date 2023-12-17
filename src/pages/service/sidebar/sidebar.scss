@@ -24,11 +24,16 @@
 
   .center {
     padding-left: 10px;
+    hr{
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+
+    }
 
     ul {
       list-style: none;
-      margin: 0;
       padding: 0;
+      margin-bottom: 4rem;
 
       .title {
         font-size: 10px;
@@ -51,6 +56,8 @@
         .icon {
           font-size: 27px;
           color: #7451f8;
+          margin-bottom: 1rem;
+
         }
 
         span{
@@ -58,7 +65,10 @@
             font-weight: 600;
             color: #888;
             margin-left: 10px;
+            margin-bottom: 1rem;
+
         }
+
       }
     }
   }

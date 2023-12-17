@@ -1,9 +1,11 @@
 import "./App.css";
 import Service from "./pages/service/home/Service";
 import Profile from "./pages/service/profile/Profile"
+import EditProfile from "./pages/service/profile/editProfile/EditProfile"
 import Analytics from "./pages/service/analytics/Analytics"
 import Users from "./pages/service/users/Users"
 import Create from "./pages/service/new/New"
+import Translate from "./pages/service/translate/Translate"
 import Order from "./pages/service/order/Order"
 
 import { productInputs, userInputs } from "./formSource";
@@ -26,23 +28,27 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage />} />     {/* mặc định HomePage trước sẽ hiển thị trước */}
-        
+
         <Route path="/Login" element={<Login />} />
         <Route path="/HomePage" element={<Homepage />} />
         <Route path="service">
           <Route index element={<Service />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="users" element={<Users />} />
-            <Route path="analytics" element={<Analytics />} />
-            <Route path="create" element={<Create />} />
-            <Route path="order" element={<Order />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="users" element={<Users />} />
+          <Route path="analytics" element={<Analytics />} />
+          <Route path="create" element={<Create />} />
+          <Route path="order" element={<Order />} />
+          <Route path="edit_profile" element={<EditProfile />} />
+          <Route path="translate" element={<Translate />} />
 
 
-          </Route>
+
+
+        </Route>
 
 
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 

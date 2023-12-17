@@ -8,9 +8,12 @@ import { Link } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import CreditCardIcon from "@mui/icons-material/CreditCard";
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import PostAddIcon from '@mui/icons-material/PostAdd';
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
@@ -77,41 +80,26 @@ export default function Sidebar() {
           </IconButton>
         </Toolbar>
         <div className="sidebar">
-          <hr />
+          <br />
           <div className="center">
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column' , justifyContent: 'center' }}>
-              <br />
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <Link to="/service/order" style={{ textDecoration: "none" }} ref={linkRef}>
                 <li style={{ display: 'flex', alignItems: 'center' }}>
                   <AddCircleOutlineIcon className="icon" />
                   <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Tạo đơn hàng mới</span>
                 </li>
               </Link>
-              <Link to="/service/create" style={{ textDecoration: "none" }} ref={linkRef}>
+              <Link to="/service/translate" style={{ textDecoration: "none" }} ref={linkRef}>
                 <li style={{ display: 'flex', alignItems: 'center' }}>
-                  <AddCircleOutlineIcon className="icon" />
-                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Cập nh đơn hàng</span>
+                  <PostAddIcon className="icon" />
+                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Tạo vận chuyển</span>
                 </li>
               </Link>
-              <Link to="/service/create" style={{ textDecoration: "none" }} ref={linkRef}>
-                <li style={{ display: 'flex', alignItems: 'center' }}>
-                  <BorderColorIcon className="icon" />
-                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Thống kê đơn hàng</span>
-                </li>
-              </Link>
-              <br />
               <hr />
-              <br />
-              <Link to="/service/users" style={{ textDecoration: "none" }} ref={linkRef}>
+              <Link to="/service/list" style={{ textDecoration: "none" }} ref={linkRef}>
                 <li style={{ display: 'flex', alignItems: 'center' }}>
-                  <RecentActorsIcon className="icon" />
-                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Quản lý người dùng</span>
-                </li>
-              </Link>
-              <Link to="/service/payments" style={{ textDecoration: "none" }} ref={linkRef}>
-                <li style={{ display: 'flex', alignItems: 'center' }}>
-                  <CreditCardIcon className="icon" />
-                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Quản lý thanh toán</span>
+                  <ListAltIcon className="icon" />
+                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Danh sách đơn hàng</span>
                 </li>
               </Link>
               <Link to="/service/analytics" style={{ textDecoration: "none" }} ref={linkRef}>
@@ -120,13 +108,24 @@ export default function Sidebar() {
                   <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Thống kê</span>
                 </li>
               </Link>
-              <br />
               <hr />
-              <br />
+              <Link to="/service/users" style={{ textDecoration: "none" }} ref={linkRef}>
+                <li style={{ display: 'flex', alignItems: 'center' }}>
+                  <RecentActorsIcon className="icon" />
+                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Danh sách nhân viên</span>
+                </li>
+              </Link>
+              <Link to="/service/create" style={{ textDecoration: "none" }} ref={linkRef}>
+                <li style={{ display: 'flex', alignItems: 'center' }}>
+                  <PersonAddIcon className="icon" />
+                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Tạo nhân viên mới</span>
+                </li>
+              </Link>
+              <hr />
               <Link to="/service/profile" style={{ textDecoration: "none" }} ref={linkRef}>
                 <li style={{ display: 'flex', alignItems: 'center' }}>
                   <AccountCircleOutlinedIcon className="icon" />
-                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Hồ sơ</span>
+                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Thông tin cá nhân</span>
                 </li>
               </Link>
               <Link to="/logout" style={{ textDecoration: "none" }} ref={linkRef}>

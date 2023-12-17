@@ -1,168 +1,115 @@
 import * as React from 'react';
+import './order.scss'
 import Box from '@mui/material/Box';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import InputAdornment from '@mui/material/InputAdornment';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import Sidebar from '../sidebar/Sidebar';
+import { green } from '@mui/material/colors';
 
-export default function FormPropsTextFields() {
+
+export default function InputAdornments() {
+
   return (
-    <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <div>
-        <TextField
-          required
-          id="outlined-required"
-          label="Required"
-          defaultValue="Hello World"
-        />
-        <TextField
-          disabled
-          id="outlined-disabled"
-          label="Disabled"
-          defaultValue="Hello World"
-        />
-        <TextField
-          id="outlined-password-input"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-        />
-        <TextField
-          id="outlined-read-only-input"
-          label="Read Only"
-          defaultValue="Hello World"
-          InputProps={{
-            readOnly: true,
-          }}
-        />
-        <TextField
-          id="outlined-number"
-          label="Number"
-          type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-        <TextField id="outlined-search" label="Search field" type="search" />
-        <TextField
-          id="outlined-helperText"
-          label="Helper text"
-          defaultValue="Default Value"
-          helperText="Some important text"
-        />
+    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+      <div className="order">
+        <Sidebar />
+        <div className="orderContainer">
+          <br />
+          <br />
+          <div className="top">
+            <div className="left">
+              <div className="item">
+                <div className="details">
+                  <h2 className="itemTitle">Thông tin người gửi</h2>
+                  <div className="detailItem">
+                    <span className="itemKey">Họ và tên:</span>
+                    <TextField id="outlined-basic" label="Họ và tên" variant="outlined" sx={{ m: 2, marginRight: '64px' }} />
+                    <span className="itemKey">Số điện thoại:</span>
+                    <TextField id="outlined-basic" label="Số điện thoại" variant="outlined" />
+                  </div>
+                  <div className="detailItem">
+                    <span className="itemKey">Địa chỉ:</span>
+                    <TextField
+                      id="outlined-basic"
+                      label="Địa chỉ"
+                      variant="outlined"
+                      sx={{ width: '477px', marginLeft: '35px' }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="right">
+              <div className="item">
+                <div className="details">
+                  <h2 className="itemTitle">Thông tin người nhận</h2>
+                  <div className="detailItem">
+                    <span className="itemKey">Họ và tên:</span>
+                    <TextField id="outlined-basic" label="Họ và tên" variant="outlined" sx={{ m: 2, marginRight: '64px' }} />
+                    <span className="itemKey">Số điện thoại:</span>
+                    <TextField id="outlined-basic" label="Số điện thoại" variant="outlined" />
+                  </div>
+                  <div className="detailItem">
+                    <span className="itemKey">Địa chỉ:</span>
+                    <TextField
+                      id="outlined-basic"
+                      label="Địa chỉ"
+                      variant="outlined"
+                      sx={{ width: '477px', marginLeft: '35px' }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bottom">
+            <div className="details">
+              <h2 className="itemTitle">Thông tin đơn hàng</h2>
+              <div className="detailItem">
+                <span className="itemKey">Loại đơn hàng:</span>
+                <FormControl sx={{ m: 1, minWidth: 250 }}>
+                  <InputLabel id="demo-simple-select-autowidth-label">Loại hàng</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-autowidth-label"
+                    id="demo-simple-select-autowidth"
+                    autoWidth
+                    label="Loại hàng"
+                    sx={{ marginRight: '128px' }}
+                  >
+
+                    <MenuItem value={1}>Hàng hóa</MenuItem>
+                    <MenuItem value={2}>Tài liệu</MenuItem>
+                  </Select>
+                </FormControl>
+                <span className="itemKey">Cân nặng:</span>
+                <TextField
+                  id="outlined-start-adornment"
+                  sx={{ m: 2, width: '100px',marginRight: '128px'}}
+                  InputProps={{
+                    startAdornment: <InputAdornment position="start">kg</InputAdornment>,
+                  }}
+                />
+                <span className="itemKey">Ghi chú:</span>
+                <TextField id="outlined-basic" variant="outlined" sx={{width: '400px'}} />
+              </div>
+
+            </div>
+            <Button size="large" variant="contained" disableElevation sx={{ background: "#7451f8" }}>
+              Xác nhận
+            </Button>
+
+          </div>
+        </div>
       </div>
-      <div>
-        <TextField
-          required
-          id="filled-required"
-          label="Required"
-          defaultValue="Hello World"
-          variant="filled"
-        />
-        <TextField
-          disabled
-          id="filled-disabled"
-          label="Disabled"
-          defaultValue="Hello World"
-          variant="filled"
-        />
-        <TextField
-          id="filled-password-input"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-          variant="filled"
-        />
-        <TextField
-          id="filled-read-only-input"
-          label="Read Only"
-          defaultValue="Hello World"
-          InputProps={{
-            readOnly: true,
-          }}
-          variant="filled"
-        />
-        <TextField
-          id="filled-number"
-          label="Number"
-          type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="filled"
-        />
-        <TextField
-          id="filled-search"
-          label="Search field"
-          type="search"
-          variant="filled"
-        />
-        <TextField
-          id="filled-helperText"
-          label="Helper text"
-          defaultValue="Default Value"
-          helperText="Some important text"
-          variant="filled"
-        />
-      </div>
-      <div>
-        <TextField
-          required
-          id="standard-required"
-          label="Required"
-          defaultValue="Hello World"
-          variant="standard"
-        />
-        <TextField
-          disabled
-          id="standard-disabled"
-          label="Disabled"
-          defaultValue="Hello World"
-          variant="standard"
-        />
-        <TextField
-          id="standard-password-input"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-          variant="standard"
-        />
-        <TextField
-          id="standard-read-only-input"
-          label="Read Only"
-          defaultValue="Hello World"
-          InputProps={{
-            readOnly: true,
-          }}
-          variant="standard"
-        />
-        <TextField
-          id="standard-number"
-          label="Number"
-          type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="standard"
-        />
-        <TextField
-          id="standard-search"
-          label="Search field"
-          type="search"
-          variant="standard"
-        />
-        <TextField
-          id="standard-helperText"
-          label="Helper text"
-          defaultValue="Default Value"
-          helperText="Some important text"
-          variant="standard"
-        />
-      </div>
-    </Box>
+
+
+
+    </Box >
   );
 }
