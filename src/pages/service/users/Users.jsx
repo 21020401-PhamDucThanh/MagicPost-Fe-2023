@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 import "./users.scss"
-import Chart from "../../../../components/chart/Chart";
-import List from "../../../../components/table/Table";
-import Datatable from "../../../../components/datatable/Datatable"
-import Sidebar from "../../service/sidebar/Sidebar";
+import Chart from "../components/chart/Chart";
+import List from "../components/table/Table";
+import Datatable from "../components/datatable/Datatable"
+import Sidebar from "../sidebar/Sidebar";
 
 const Users = () => {
   const [activeTab, setActiveTab] = useState("users");

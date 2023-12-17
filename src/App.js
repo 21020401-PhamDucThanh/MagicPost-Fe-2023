@@ -1,9 +1,11 @@
 import "./App.css";
-import Service from "./pages/position/service/home/Service";
-import Profile from "./pages/position/service/profile/Profile"
-import Analytics from "./pages/position/service/analytics/Analytics"
-import Users from "./pages/position/service/users/Users"
-import Create from "./pages/position/service/new/New"
+import Service from "./pages/service/home/Service";
+import Profile from "./pages/service/profile/Profile"
+import Analytics from "./pages/service/analytics/Analytics"
+import Users from "./pages/service/users/Users"
+import Create from "./pages/service/new/New"
+import Order from "./pages/service/order/Order"
+
 import { productInputs, userInputs } from "./formSource";
 import {
   createBrowserRouter,
@@ -29,14 +31,11 @@ function App() {
         <Route path="/HomePage" element={<Homepage />} />
         <Route path="service">
           <Route index element={<Service />} />
-
             <Route path="profile" element={<Profile />} />
             <Route path="users" element={<Users />} />
             <Route path="analytics" element={<Analytics />} />
             <Route path="create" element={<Create />} />
-
-
-
+            <Route path="order" element={<Order />} />
 
 
           </Route>

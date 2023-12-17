@@ -1,6 +1,4 @@
 import './service.scss';
-import SidebarService from '../sidebar/Sidebar';
-import Navbar from '../../../../components/navbar/Navbar';
 import Sidebar from '../sidebar/Sidebar';
 const Home = () => {
 
