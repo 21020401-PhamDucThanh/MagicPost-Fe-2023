@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 
-import "./users.scss"
+import "./listOrder.scss"
 import Chart from "../components/chart/Chart";
 import List from "../components/table/Table";
-import Datatable from "./datatable/Datatable"
+import Datatable from "../components/datatable/Datatable"
 import Sidebar from "../sidebar/Sidebar";
 
-const Users = () => {
-  const [activeTab, setActiveTab] = useState("users");
+const ListOrder = () => {
+  const [activeTab, setActiveTab] = useState("ListOrder");
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
   return (
-    <div className="users">
+    <div className="listOrder">
       <Sidebar />
       <div className="listContainer">
         <Datatable/>
@@ -23,4 +23,4 @@ const Users = () => {
   )
 }
 
-export default Users
+export default ListOrder

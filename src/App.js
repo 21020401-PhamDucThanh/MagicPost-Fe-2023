@@ -5,7 +5,8 @@ import EditProfile from "./pages/service/profile/editProfile/EditProfile"
 import Analytics from "./pages/service/analytics/Analytics"
 import Users from "./pages/service/users/Users"
 import Create from "./pages/service/new/New"
-import Translate from "./pages/service/translate/Translate"
+import Transport from "./pages/service/transport/Transport"
+import ListOrder from "./pages/service/list_order/ListOrder"
 import Order from "./pages/service/order/Order"
 
 import { productInputs, userInputs } from "./formSource";
@@ -38,8 +39,9 @@ function App() {
           <Route path="analytics" element={<Analytics />} />
           <Route path="create" element={<Create />} />
           <Route path="order" element={<Order />} />
+          <Route path="list" element={<ListOrder />} />
           <Route path="edit_profile" element={<EditProfile />} />
-          <Route path="translate" element={<Translate />} />
+          <Route path="transport" element={<Transport />} />
 
 
 

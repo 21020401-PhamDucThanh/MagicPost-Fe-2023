@@ -89,7 +89,7 @@ export default function Sidebar() {
                   <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Tạo đơn hàng mới</span>
                 </li>
               </Link>
-              <Link to="/service/translate" style={{ textDecoration: "none" }} ref={linkRef}>
+              <Link to="/service/transport" style={{ textDecoration: "none" }} ref={linkRef}>
                 <li style={{ display: 'flex', alignItems: 'center' }}>
                   <PostAddIcon className="icon" />
                   <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Tạo vận chuyển</span>
@@ -115,12 +115,7 @@ export default function Sidebar() {
                   <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Danh sách nhân viên</span>
                 </li>
               </Link>
-              <Link to="/service/create" style={{ textDecoration: "none" }} ref={linkRef}>
-                <li style={{ display: 'flex', alignItems: 'center' }}>
-                  <PersonAddIcon className="icon" />
-                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Tạo nhân viên mới</span>
-                </li>
-              </Link>
+              
               <hr />
               <Link to="/service/profile" style={{ textDecoration: "none" }} ref={linkRef}>
                 <li style={{ display: 'flex', alignItems: 'center' }}>

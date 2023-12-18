@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './translate.scss'
+import './transport.scss'
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -13,7 +13,7 @@ import Sidebar from '../sidebar/Sidebar';
 import { green } from '@mui/material/colors';
 
 
-export default function Translate() {
+export default function Transport() {
     const [age, setAge] = React.useState('');
 
     const handleChange = (event) => {
@@ -21,9 +21,9 @@ export default function Translate() {
     };
     return (
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-            <div className="translate">
+            <div className="transport">
                 <Sidebar />
-                <div className="translateContainer">
+                <div className="transportContainer">
                     <br />
                     <br />
                     <div className="top">
@@ -34,6 +34,7 @@ export default function Translate() {
                                     <div className="detailItem">
                                         <span className="itemKey">ID đơn hàng:</span>
                                         <TextField id="outlined-basic" label="ID" variant="outlined" sx={{ m: 2 }} />
+                                        <Button variant="outlined" sx={{color: "#7451f8", borderColor: "#7451f8"}}>Kiểm tra</Button>
                                     </div>
                                     <div className="detailItem">
                                         <span className="itemKey">Loại vận chuyển:</span>
@@ -58,12 +59,23 @@ export default function Translate() {
 
                                     <div className="detailItem">
                                         <span className="itemKey">Địa chỉ:</span>
-                                        <TextField
-                                            id="outlined-basic"
-                                            label="Địa chỉ"
-                                            variant="outlined"
-                                            sx={{ width: '477px', marginLeft: '35px' }}
-                                        />
+                                        <FormControl sx={{ m: 1, minWidth: 250 }}>
+                                            <InputLabel id="demo-simple-select-autowidth-label">Loại hàng</InputLabel>
+                                            <Select
+                                                labelId="demo-simple-select-autowidth-label"
+                                                id="demo-simple-select-autowidth"
+                                                autoWidth
+                                                label="Vận chuyển"
+                                                sx={{ marginRight: '128px', minWidth: 300  }}
+                                            >
+
+                                                <MenuItem value={1}>S</MenuItem>
+                                                <MenuItem value={2}>Đ</MenuItem>
+                                                <MenuItem value={3}>Gx</MenuItem>
+                                                <MenuItem value={4}>H</MenuItem>
+
+                                            </Select>
+                                        </FormControl>
                                     </div>
                                     <Button size="large" variant="contained" disableElevation sx={{ background: "#7451f8", marginTop:"10%" }}>
                                         Xác nhận
