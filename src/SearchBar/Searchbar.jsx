@@ -1,7 +1,6 @@
 import React from 'react';
 import './Searchbar.css';
-
-
+import Timeline from './MyTimeline';
 function SearchBar() {
 
 
@@ -18,8 +17,8 @@ function SearchBar() {
           // // onChange={handleSearchChange}
         />
 
-          <button className='button' type='submit' ><span className="button-content">Tra cứu đơn  </span></button>  
-        
+        <button className='button' type='submit' ><span className="button-content">Tra cứu đơn  </span></button>  
+        <Timeline/>
       </form>    
 </div>
   );
