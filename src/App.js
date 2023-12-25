@@ -1,4 +1,10 @@
 import "./App.css";
+
+
+// import BossService from "./pages/boss/"
+
+
+
 import Service from "./pages/service/home/Service";
 import Profile from "./pages/service/profile/Profile"
 import EditProfile from "./pages/service/profile/editProfile/EditProfile"
@@ -47,6 +53,24 @@ function App() {
 
 
         </Route>
+
+        <Route path="boss">
+          <Route index element={<Service />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="users" element={<Users />} />
+          <Route path="analytics" element={<Analytics />} />
+          <Route path="create" element={<Create />} />
+          <Route path="order" element={<Order />} />
+          <Route path="list" element={<ListOrder />} />
+          <Route path="edit_profile" element={<EditProfile />} />
+          <Route path="transport" element={<Transport />} />
+
+
+
+
+        </Route>
+
+
 
 
       </Routes>
