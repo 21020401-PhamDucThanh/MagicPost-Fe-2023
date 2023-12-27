@@ -1,7 +1,11 @@
 import "./App.css";
-
-
-// import BossService from "./pages/boss/"
+import BossHome from "./pages/boss/home/Boss";
+import BossProfile from "./pages/boss/profile/Profile"
+import BossEditProfile from "./pages/boss/profile/editProfile/EditProfile"
+import BossAnalytics from "./pages/boss/analytics/Analytics"
+import BossCreate from "./pages/boss/new/New"
+import BossListOrder from "./pages/boss/list_order/ListOrder"
+import BossUsers from "./pages/boss/users/Users"
 
 
 
@@ -35,9 +39,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage />} />     {/* mặc định HomePage trước sẽ hiển thị trước */}
-
         <Route path="/Login" element={<Login />} />
         <Route path="/HomePage" element={<Homepage />} />
+
         <Route path="service">
           <Route index element={<Service />} />
           <Route path="profile" element={<Profile />} />
@@ -48,30 +52,18 @@ function App() {
           <Route path="list" element={<ListOrder />} />
           <Route path="edit_profile" element={<EditProfile />} />
           <Route path="transport" element={<Transport />} />
-
-
-
-
         </Route>
 
         <Route path="boss">
-          <Route index element={<Service />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="users" element={<Users />} />
-          <Route path="analytics" element={<Analytics />} />
-          <Route path="create" element={<Create />} />
-          <Route path="order" element={<Order />} />
-          <Route path="list" element={<ListOrder />} />
-          <Route path="edit_profile" element={<EditProfile />} />
-          <Route path="transport" element={<Transport />} />
-
-
-
-
+          <Route index element={<BossHome />} />
+          <Route path="profile" element={<BossProfile />} />
+          <Route path="users" element={<BossUsers />} />
+          <Route path="analytics" element={<BossAnalytics />} />
+          <Route path="create" element={<BossCreate />} />
+          <Route path="list" element={<BossListOrder />} />
+          <Route path="edit_profile" element={<BossEditProfile />} />
+          <Route path="list" element={<BossListOrder />} />
         </Route>
-
-
-
 
       </Routes>
     </BrowserRouter >

@@ -12,8 +12,10 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
@@ -83,41 +85,35 @@ export default function Sidebar() {
           <br />
           <div className="center">
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <Link to="/service/order" style={{ textDecoration: "none" }} ref={linkRef}>
-                <li style={{ display: 'flex', alignItems: 'center' }}>
-                  <AddCircleOutlineIcon className="icon" />
-                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Tạo đơn hàng mới</span>
-                </li>
-              </Link>
-              <Link to="/service/transport" style={{ textDecoration: "none" }} ref={linkRef}>
-                <li style={{ display: 'flex', alignItems: 'center' }}>
-                  <PostAddIcon className="icon" />
-                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Tạo vận chuyển</span>
-                </li>
-              </Link>
-              <hr />
-              <Link to="/service/list" style={{ textDecoration: "none" }} ref={linkRef}>
+
+              <Link to="/boss/list" style={{ textDecoration: "none" }} ref={linkRef}>
                 <li style={{ display: 'flex', alignItems: 'center' }}>
                   <ListAltIcon className="icon" />
                   <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Danh sách đơn hàng</span>
                 </li>
               </Link>
-              <Link to="/service/analytics" style={{ textDecoration: "none" }} ref={linkRef}>
+              <Link to="/boss/analytics" style={{ textDecoration: "none" }} ref={linkRef}>
                 <li style={{ display: 'flex', alignItems: 'center' }}>
                   <InsertChartIcon className="icon" />
                   <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Thống kê</span>
                 </li>
               </Link>
               <hr />
-              <Link to="/service/users" style={{ textDecoration: "none" }} ref={linkRef}>
+              <Link to="/boss/users" style={{ textDecoration: "none" }} ref={linkRef}>
                 <li style={{ display: 'flex', alignItems: 'center' }}>
                   <RecentActorsIcon className="icon" />
                   <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Danh sách nhân viên</span>
                 </li>
               </Link>
-              
               <hr />
-              <Link to="/service/profile" style={{ textDecoration: "none" }} ref={linkRef}>
+              <Link to="/boss/create" style={{ textDecoration: "none" }} ref={linkRef}>
+                <li style={{ display: 'flex', alignItems: 'center' }}>
+                  <AddBusinessIcon className="icon" />
+                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Tạo điểm mới</span>
+                </li>
+              </Link>
+              <hr />
+              <Link to="/boss/profile" style={{ textDecoration: "none" }} ref={linkRef}>
                 <li style={{ display: 'flex', alignItems: 'center' }}>
                   <AccountCircleOutlinedIcon className="icon" />
                   <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Thông tin cá nhân</span>
