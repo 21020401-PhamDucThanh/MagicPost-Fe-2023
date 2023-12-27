@@ -1,19 +1,95 @@
-import * as React from "react";
+import React, { useState } from "react";
 import "./order.scss";
 import Box from "@mui/material/Box";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import InputAdornment from "@mui/material/InputAdornment";
+import AlertTitle from '@mui/material/AlertTitle';
+import Alert from '@mui/material/Alert';
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Sidebar from "../sidebar/Sidebar";
-import { green } from "@mui/material/colors";
-import { Input } from "@mui/material";
+import axios from "axios";
 
 export default function InputAdornments() {
+  const [errorAlert, setErrorAlert] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [hideTimeoutId, setHideTimeoutId] = useState(null);
+  const [startingAddress, setStartingAddress] = useState("");
+  const [destinationAddress, setDestinationAddress] = useState("");
+  const [nameSender, setNameSender] = useState("");
+  const [nameReceiver, setNameReceiver] = useState("");
+  const [senderPhoneNumber, setSenderPhoneNumber] = useState("");
+  const [receiverPhoneNumber, setReceiverPhoneNumber] = useState("");
+  const [weight, setWeight] = useState("");
+  const [type, setType] = useState(1);
+  const [note, setNote] = useState("");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    // Kiểm tra xem tất cả các trường thông tin đã được nhập hay chưa
+    if (
+      !startingAddress ||
+      !destinationAddress ||
+      !nameSender ||
+      !nameReceiver ||
+      !senderPhoneNumber ||
+      !receiverPhoneNumber ||
+      !weight ||
+      !type ||
+      !note
+    ) {
+      // Hiển thị alert lỗi
+      setErrorAlert(true);
+
+      // Ẩn alert sau 5 giây
+      const errorTimeoutId = setTimeout(() => {
+        setErrorAlert(false);
+      }, 5000);
+
+      // Lưu ID của timeout để có thể xóa nó nếu cần thiết
+      setHideTimeoutId(errorTimeoutId);
+
+      return;
+    }
+
+    const data = {
+      startingAddress,
+      destinationAddress,
+      nameSender,
+      nameReceiver,
+      senderPhoneNumber,
+      receiverPhoneNumber,
+      weight,
+      type,
+      note,
+    };
+
+    const token = localStorage.getItem("token");
+
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    };
+
+    try {
+      console.log('Data:', data);
+      console.log('Headers:', headers);
+
+      await axios.post("http://localhost:8080/transaction", data, { headers });
+
+      setShowAlert(true);
+      const timeoutId = setTimeout(() => {
+        setShowAlert(false);
+      }, 5000);
+
+      setHideTimeoutId(timeoutId);
+    } catch (error) {
+      console.error("Error submitting data:", error);
+    }
+  };
+
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap" }}>
       <div className="order">
@@ -32,29 +108,26 @@ export default function InputAdornments() {
                       type="text"
                       placeholder="Nhập từ khóa..."
                       className="input"
-                      // required=''
-                      // // value={searchTerm}
-                      // // onChange={handleSearchChange}
+                      value={nameSender}
+                      onChange={(event) => setNameSender(event.target.value)}
                     />
                     <span className="itemKey">Số điện thoại:</span>
                     <input
                       type="text"
-                      placeholder="Nhập sddt..."
+                      placeholder="Nhập từ khóa..."
                       className="input"
-                      // required=''
-                      // // value={searchTerm}
-                      // // onChange={handleSearchChange}
+                      value={senderPhoneNumber}
+                      onChange={(event) => setSenderPhoneNumber(event.target.value)}
                     />
                   </div>
                   <div className="detailItem">
                     <span className="itemKey">Địa chỉ:</span>
                     <input
                       type="text"
-                      placeholder="Nhập sddt..."
+                      placeholder="Nhập từ khóa..."
                       className="longinput"
-                      // required=''
-                      // // value={searchTerm}
-                      // // onChange={handleSearchChange}
+                      value={startingAddress}
+                      onChange={(event) => setStartingAddress(event.target.value)}
                     />
                   </div>
                 </div>
@@ -68,31 +141,28 @@ export default function InputAdornments() {
                     <span className="itemKey">Họ và tên:</span>
                     <input
                       type="text"
-                      placeholder="Nhập sddt..."
+                      placeholder="Nhập từ khóa..."
                       className="input"
-                      // required=''
-                      // // value={searchTerm}
-                      // // onChange={handleSearchChange}
-                    />{" "}
+                      value={nameReceiver}
+                      onChange={(event) => setNameReceiver(event.target.value)}
+                    />
                     <span className="itemKey">Số điện thoại:</span>
                     <input
                       type="text"
-                      placeholder="Nhập sddt..."
+                      placeholder="Nhập từ khóa..."
                       className="input"
-                      // required=''
-                      // // value={searchTerm}
-                      // // onChange={handleSearchChange}
-                    />{" "}
+                      value={receiverPhoneNumber}
+                      onChange={(event) => setReceiverPhoneNumber(event.target.value)}
+                    />
                   </div>
                   <div className="detailItem">
                     <span className="itemKey">Địa chỉ:</span>
                     <input
                       type="text"
-                      placeholder="Nhập sddt..."
+                      placeholder="Nhập từ khóa..."
                       className="longinput"
-                      // required=''
-                      // // value={searchTerm}
-                      // // onChange={handleSearchChange}
+                      value={destinationAddress}
+                      onChange={(event) => setDestinationAddress(event.target.value)}
                     />
                   </div>
                 </div>
@@ -114,6 +184,8 @@ export default function InputAdornments() {
                     autoWidth
                     label="Loại hàng"
                     sx={{ marginRight: "128px" }}
+                    value={type}
+                    onChange={(event) => setType(event.target.value)}
                   >
                     <MenuItem value={1}>Hàng hóa</MenuItem>
                     <MenuItem value={2}>Tài liệu</MenuItem>
@@ -121,22 +193,20 @@ export default function InputAdornments() {
                 </FormControl>
                 <span className="itemKey">Cân nặng:</span>
                 <input
-                      type="text"
-                      placeholder="Nhập sddt..."
-                      className="input"
-                      // required=''
-                      // // value={searchTerm}
-                      // // onChange={handleSearchChange}
-                    />
+                  type="text"
+                  placeholder="Nhập từ khóa..."
+                  className="input"
+                  value={weight}
+                  onChange={(event) => setWeight(event.target.value)}
+                />
                 <span className="itemKey">Ghi chú:</span>
                 <input
-                      type="text"
-                      placeholder="Nhập sddt..."
-                      className="input"
-                      // required=''
-                      // // value={searchTerm}
-                      // // onChange={handleSearchChange}
-                    />
+                  type="text"
+                  placeholder="Nhập từ khóa..."
+                  className="input"
+                  value={note}
+                  onChange={(event) => setNote(event.target.value)}
+                />
               </div>
             </div>
             <Button
@@ -144,9 +214,23 @@ export default function InputAdornments() {
               variant="contained"
               disableElevation
               sx={{ background: "#7451f8" }}
+              onClick={handleSubmit}
             >
               Xác nhận
             </Button>
+            {errorAlert && ( // Hiển thị Alert lỗi nếu có lỗi
+              <Alert severity="error">
+                <AlertTitle>Lỗi</AlertTitle>
+                Vui lòng nhập đầy đủ thông tin — <strong>kiểm tra lại!</strong>
+              </Alert>
+            )}
+
+            {showAlert && (
+              <Alert severity="success">
+                <AlertTitle>Thành công</AlertTitle>
+                Đơn hàng đã được gửi thành công — <strong>Hãy kiểm tra</strong>
+              </Alert>
+            )}
           </div>
         </div>
       </div>
