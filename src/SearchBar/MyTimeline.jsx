@@ -1,44 +1,31 @@
-import * as React from 'react';
-import Timeline from '@mui/lab/Timeline';
-import TimelineItem from '@mui/lab/TimelineItem';
-import TimelineSeparator from '@mui/lab/TimelineSeparator';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineDot from '@mui/lab/TimelineDot';
-// import './MyTimeline.css';
+// MyTimeline.jsx
+import React, { useEffect, useState } from 'react';
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import 'react-vertical-timeline-component/style.min.css';
 
-const AlternateReverseTimeline = () => {
+const MyTimeline = ({ data }) => {
+  const [timelineData, setTimelineData] = useState([]);
+
+  useEffect(() => {
+    // Cập nhật state timelineData khi props data thay đổi
+    setTimelineData(Array.isArray(data) ? data : []);
+  }, [data]);
+
   return (
-    <Timeline position="alternate-reverse" className="custom-timeline">
-      <TimelineItem className="custom-timeline-item">
-        <TimelineSeparator>
-          <TimelineDot className="custom-timeline-dot" />
-          <TimelineConnector className="custom-timeline-connector" />
-        </TimelineSeparator>
-        <TimelineContent className="custom-timeline-content custom-large-text">Eat</TimelineContent>
-      </TimelineItem>
-      <TimelineItem className="custom-timeline-item">
-        <TimelineSeparator>
-          <TimelineDot className="custom-timeline-dot" />
-          <TimelineConnector className="custom-timeline-connector" />
-        </TimelineSeparator>
-        <TimelineContent className="custom-timeline-content custom-large-text">Code</TimelineContent>
-      </TimelineItem>
-      <TimelineItem className="custom-timeline-item">
-        <TimelineSeparator>
-          <TimelineDot className="custom-timeline-dot" />
-          <TimelineConnector className="custom-timeline-connector" />
-        </TimelineSeparator>
-        <TimelineContent className="custom-timeline-content custom-large-text">Sleep</TimelineContent>
-      </TimelineItem>
-      <TimelineItem className="custom-timeline-item">
-        <TimelineSeparator>
-          <TimelineDot className="custom-timeline-dot" />
-        </TimelineSeparator>
-        <TimelineContent className="custom-timeline-content custom-large-text">Repeat</TimelineContent>
-      </TimelineItem>
-    </Timeline>
+    <VerticalTimeline>
+      {Array.isArray(timelineData) && timelineData.map((eventData, index) => (
+        <VerticalTimelineElement
+          key={index}
+          className="vertical-timeline-element--work"
+        >
+          <h4 className="vertical-timeline-element-subtitle">{eventData.time}</h4>
+          <p>
+            Location: {eventData.location}, Address: {eventData.address}
+          </p>
+        </VerticalTimelineElement>
+      ))}
+    </VerticalTimeline>
   );
 };
 
-export default AlternateReverseTimeline;
+export default MyTimeline;
