@@ -1,0 +1,10 @@
+.hiddenOnScreen {
+    display: none;
+  }
+  
+  @media print {
+    .hiddenOnScreen {
+      display: block;
+    }
+  }
+  
