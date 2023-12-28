@@ -1,19 +1,15 @@
 import * as React from 'react';
 import "./sidebar.scss"
 import { useState, useContext, useRef } from 'react';
-import { styled, useTheme } from '@mui/material/styles';
 import Drawer from '@mui/material/Drawer';
 import AppBar from '@mui/material/AppBar';
 import { Link } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import CreditCardIcon from "@mui/icons-material/CreditCard";
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
@@ -25,6 +21,11 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 const drawerWidth = 200;
 
 export default function Sidebar() {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    linkRef.current.click();
+  };
+
   const linkRef = useRef(null);
 
   const [isDrawerLarge, setIsDrawerLarge] = React.useState(true);
@@ -102,12 +103,6 @@ export default function Sidebar() {
                   <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Danh sách đơn hàng</span>
                 </li>
               </Link>
-              <Link to="/service/analytics" style={{ textDecoration: "none" }} ref={linkRef}>
-                <li style={{ display: 'flex', alignItems: 'center' }}>
-                  <InsertChartIcon className="icon" />
-                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Thống kê</span>
-                </li>
-              </Link>
               <hr />
               <Link to="/service/users" style={{ textDecoration: "none" }} ref={linkRef}>
                 <li style={{ display: 'flex', alignItems: 'center' }}>
@@ -115,7 +110,7 @@ export default function Sidebar() {
                   <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Danh sách nhân viên</span>
                 </li>
               </Link>
-              
+
               <hr />
               <Link to="/service/profile" style={{ textDecoration: "none" }} ref={linkRef}>
                 <li style={{ display: 'flex', alignItems: 'center' }}>
@@ -123,10 +118,12 @@ export default function Sidebar() {
                   <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Thông tin cá nhân</span>
                 </li>
               </Link>
-              <Link to="/logout" style={{ textDecoration: "none" }} ref={linkRef}>
-                <li style={{ display: 'flex', alignItems: 'center' }}>
+              <Link to="/login" style={{ textDecoration: "none" }} ref={linkRef}>
+                <li style={{ display: "flex", alignItems: "center" }} onClick={handleLogout}>
                   <ExitToAppIcon className="icon" />
-                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Đăng xuất</span>
+                  <span style={{ marginLeft: "8px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    Đăng xuất
+                  </span>
                 </li>
               </Link>
             </ul>

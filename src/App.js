@@ -12,7 +12,6 @@ import BossUsers from "./pages/boss/users/Users"
 import Service from "./pages/service/home/Service";
 import Profile from "./pages/service/profile/Profile"
 import EditProfile from "./pages/service/profile/editProfile/EditProfile"
-import Analytics from "./pages/service/analytics/Analytics"
 import Users from "./pages/service/users/Users"
 import Create from "./pages/service/new/New"
 import Transport from "./pages/service/transport/Transport"
@@ -46,7 +45,6 @@ function App() {
           <Route index element={<Service />} />
           <Route path="profile" element={<Profile />} />
           <Route path="users" element={<Users />} />
-          <Route path="analytics" element={<Analytics />} />
           <Route path="create" element={<Create />} />
           <Route path="order" element={<Order />} />
           <Route path="list" element={<ListOrder />} />

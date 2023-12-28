@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import "./listOrder.scss"
-import Datatable from "../components/datatable/Datatable"
+import Datatable from "./order_datatable/OrderDatatable"
 import Sidebar from "../sidebar/Sidebar";
 
 const ListOrder = () => {

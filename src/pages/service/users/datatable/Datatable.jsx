@@ -80,11 +80,11 @@ const Datatable = () => {
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 5,
+              pageSize: 9,
             },
           },
         }}
-        pageSizeOptions={[5]}
+        pageSizeOptions={[9]}
         checkboxSelection
         disableRowSelectionOnClick
       />

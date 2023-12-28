@@ -77,7 +77,7 @@ export default function InputAdornments() {
       console.log('Data:', data);
       console.log('Headers:', headers);
 
-      await axios.post("http://localhost:8080/transaction", data, { headers });
+      await axios.post("http://localhost:8080/transaction/", data, { headers });
 
       setShowAlert(true);
       const timeoutId = setTimeout(() => {
