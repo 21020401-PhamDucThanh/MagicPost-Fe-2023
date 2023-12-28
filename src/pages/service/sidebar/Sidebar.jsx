@@ -1,6 +1,6 @@
 import * as React from 'react';
 import "./sidebar.scss"
-import { useState, useContext, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Drawer from '@mui/material/Drawer';
 import AppBar from '@mui/material/AppBar';
 import { Link } from "react-router-dom";
@@ -25,8 +25,17 @@ export default function Sidebar() {
     localStorage.removeItem("token");
     linkRef.current.click();
   };
+  const role = localStorage.getItem("role");
 
   const linkRef = useRef(null);
+
+  const [userRole, setUserRole] = useState(role);
+
+  // Sử dụng useEffect để cập nhật userRole khi có thay đổi trong localStorage
+  useEffect(() => {
+    setUserRole(role);
+  }, [role]);
+
 
   const [isDrawerLarge, setIsDrawerLarge] = React.useState(true);
 
@@ -104,12 +113,16 @@ export default function Sidebar() {
                 </li>
               </Link>
               <hr />
+
+              
+              {userRole !== "EMPLOYEE" && (
               <Link to="/service/users" style={{ textDecoration: "none" }} ref={linkRef}>
                 <li style={{ display: 'flex', alignItems: 'center' }}>
                   <RecentActorsIcon className="icon" />
                   <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Danh sách nhân viên</span>
                 </li>
-              </Link>
+              </Link>)
+              }
 
               <hr />
               <Link to="/service/profile" style={{ textDecoration: "none" }} ref={linkRef}>

@@ -75,9 +75,13 @@ export default function Login() {
         console.log("Login successful", response.data.data.role);
         navigate("/boss");
         const token = response.data.data.access_token;
-        const userId = response.data.data._id; // Lấy _id của người dùng
+        const userId = response.data.data._id;
+        const role = response.data.data.role;
+
+         // Lấy _id của người dùng
         localStorage.setItem("token", token);
-        localStorage.setItem("userId", userId); // Lưu _id vào localStorage
+        localStorage.setItem("userId", userId);
+        localStorage.setItem("role",role);
       } else if (
         response.status === 200 &&
         (response.data.data.role === "ADMIN" ||
@@ -89,6 +93,9 @@ export default function Login() {
         const userId = response.data.data.id; // Lấy _id của người dùng
         localStorage.setItem("token", token);
         localStorage.setItem("userId", userId);
+        const role = response.data.data.role;
+        localStorage.setItem("role",role);
+
         console.log(userId);       
       } else {
         alert("Login failed");
