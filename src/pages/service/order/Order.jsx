@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useRef } from "react";
 import "./order.scss";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
@@ -10,6 +10,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Sidebar from "../sidebar/Sidebar";
 import axios from "axios";
+import Print from "./Print";
 
 export default function InputAdornments() {
   const [errorAlert, setErrorAlert] = useState(false);
@@ -24,6 +25,8 @@ export default function InputAdornments() {
   const [weight, setWeight] = useState("");
   const [type, setType] = useState(1);
   const [note, setNote] = useState("");
+  const componentRef = useRef(null);
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -85,6 +88,9 @@ export default function InputAdornments() {
       }, 5000);
 
       setHideTimeoutId(timeoutId);
+
+      Print.handlePrint();
+
     } catch (error) {
       console.error("Error submitting data:", error);
     }
@@ -231,6 +237,7 @@ export default function InputAdornments() {
                 Đơn hàng đã được gửi thành công — <strong>Hãy kiểm tra</strong>
               </Alert>
             )}
+            <Print/>
           </div>
         </div>
       </div>
