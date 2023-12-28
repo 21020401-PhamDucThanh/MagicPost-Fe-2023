@@ -26,7 +26,7 @@ export default function InputAdornments() {
   const [type, setType] = useState(1);
   const [note, setNote] = useState("");
   const componentRef = useRef(null);
-
+  const printRef = useRef(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -58,15 +58,15 @@ export default function InputAdornments() {
     }
 
     const data = {
-      startingAddress,
-      destinationAddress,
-      nameSender,
-      nameReceiver,
-      senderPhoneNumber,
-      receiverPhoneNumber,
-      weight,
-      type,
-      note,
+      startingAddress: startingAddress,
+      destinationAddress: destinationAddress,
+      nameSender: nameSender,
+      nameReceiver: nameReceiver,
+      senderPhoneNumber: senderPhoneNumber,
+      receiverPhoneNumber: receiverPhoneNumber,
+      weight: weight,
+      type: type,
+      note: note,
     };
 
     const token = localStorage.getItem("token");
@@ -193,8 +193,8 @@ export default function InputAdornments() {
                     value={type}
                     onChange={(event) => setType(event.target.value)}
                   >
-                    <MenuItem value={1}>Hàng hóa</MenuItem>
-                    <MenuItem value={2}>Tài liệu</MenuItem>
+                    <MenuItem value={'Hàng Hóa'}>Hàng hóa</MenuItem>
+                    <MenuItem value={'Tài liệu'}>Tài liệu</MenuItem>
                   </Select>
                 </FormControl>
                 <span className="itemKey">Cân nặng:</span>

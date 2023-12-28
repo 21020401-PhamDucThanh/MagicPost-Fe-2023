@@ -1,4 +1,4 @@
-import React, { useState , useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./new.scss";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
@@ -12,18 +12,18 @@ import Sidebar from "../sidebar/Sidebar";
 import axios from "axios";
 
 export default function InputAdornments() {
+  const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
   const [errorAlert, setErrorAlert] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [hideTimeoutId, setHideTimeoutId] = useState(null);
-  const [startingAddress, setStartingAddress] = useState("");
-  const [destinationAddress, setDestinationAddress] = useState("");
-  const [nameSender, setNameSender] = useState("");
-  const [nameReceiver, setNameReceiver] = useState("");
-  const [senderPhoneNumber, setSenderPhoneNumber] = useState("");
-  const [receiverPhoneNumber, setReceiverPhoneNumber] = useState("");
-  const [weight, setWeight] = useState("");
-  const [type, setType] = useState(1);
-  const [note, setNote] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [age, setAge] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("EMPLOYEE");
+
 
 
   const handleSubmit = async (event) => {
@@ -31,15 +31,10 @@ export default function InputAdornments() {
 
     // Kiểm tra xem tất cả các trường thông tin đã được nhập hay chưa
     if (
-      !startingAddress ||
-      !destinationAddress ||
-      !nameSender ||
-      !nameReceiver ||
-      !senderPhoneNumber ||
-      !receiverPhoneNumber ||
-      !weight ||
-      !type ||
-      !note
+      !name ||
+      !email ||
+      !age ||
+      !password
     ) {
       // Hiển thị alert lỗi
       setErrorAlert(true);
@@ -56,18 +51,17 @@ export default function InputAdornments() {
     }
 
     const data = {
-      startingAddress,
-      destinationAddress,
-      nameSender,
-      nameReceiver,
-      senderPhoneNumber,
-      receiverPhoneNumber,
-      weight,
-      type,
-      note,
+      name,
+      age,
+      email,
+      username,
+      password,
+      role,
     };
 
-    const token = localStorage.getItem("token");
+
+    console.log(userId);
+
 
     const headers = {
       'Authorization': `Bearer ${token}`,
@@ -78,7 +72,7 @@ export default function InputAdornments() {
       console.log('Data:', data);
       console.log('Headers:', headers);
 
-      await axios.post("http://localhost:8080/transaction/", data, { headers });
+      await axios.post("http://localhost:8080/auth/sign-up-employee", data, { headers });
 
       setShowAlert(true);
       const timeoutId = setTimeout(() => {
@@ -111,16 +105,16 @@ export default function InputAdornments() {
                       type="text"
                       placeholder="Nhập từ khóa..."
                       className="input"
-                      value={nameReceiver}
-                      onChange={(event) => setNameReceiver(event.target.value)}
+                      value={name}
+                      onChange={(event) => setName(event.target.value)}
                     />
                     <span className="itemKey">Tuổi</span>
                     <input
                       type="text"
                       placeholder="Nhập từ khóa..."
                       className="input"
-                      value={receiverPhoneNumber}
-                      onChange={(event) => setReceiverPhoneNumber(event.target.value)}
+                      value={age}
+                      onChange={(event) => setAge(event.target.value)}
                     />
                   </div>
                   <div className="detailItem">
@@ -129,63 +123,63 @@ export default function InputAdornments() {
                       type="text"
                       placeholder="Nhập từ khóa..."
                       className="longinput"
-                      value={destinationAddress}
-                      onChange={(event) => setDestinationAddress(event.target.value)}
+                      value={email}
+                      onChange={(event) => setEmail(event.target.value)}
                     />
                   </div>
 
 
 
                   <div className="detailItem">
-                    <span className="itemKey">User</span>
+                    <span className="itemKey">Tài khoản đăng nhập</span>
                     <input
                       type="text"
                       placeholder="Nhập từ khóa..."
                       className="longinput"
-                      // value={destinationAddress}
-                      // onChange={(event) => setDestinationAddress(event.target.value)}
+                      value={username}
+                      onChange={(event) => setUsername(event.target.value)}
                     />
                   </div>
 
 
                   <div className="detailItem">
-                    <span className="itemKey">Password</span>
+                    <span className="itemKey">Mật khẩu</span>
                     <input
-                      type="text"
+                      type="password"
                       placeholder="Nhập từ khóa..."
                       className="longinput"
-                      // value={destinationAddress}
-                      // onChange={(event) => setDestinationAddress(event.target.value)}
+                      value={password}
+                      onChange={(event) => setPassword(event.target.value)}
                     />
                   </div>
                 </div>
               </div>
               <Button
-              size="large"
-              variant="contained"
-              disableElevation
-              sx={{ background: "#7451f8" }}
-              onClick={handleSubmit}
-            >
-              Xác nhận
-            </Button>
-            {errorAlert && ( // Hiển thị Alert lỗi nếu có lỗi
-              <Alert severity="error">
-                <AlertTitle>Lỗi</AlertTitle>
-                Vui lòng nhập đầy đủ thông tin — <strong>kiểm tra lại!</strong>
-              </Alert>
-            )}
+                size="large"
+                variant="contained"
+                disableElevation
+                sx={{ background: "#7451f8" }}
+                onClick={handleSubmit}
+              >
+                Xác nhận
+              </Button>
+              {errorAlert && ( // Hiển thị Alert lỗi nếu có lỗi
+                <Alert severity="error">
+                  <AlertTitle>Lỗi</AlertTitle>
+                  Vui lòng nhập đầy đủ thông tin — <strong>kiểm tra lại!</strong>
+                </Alert>
+              )}
 
-            {showAlert && (
-              <Alert severity="success">
-                <AlertTitle>Thành công</AlertTitle>
-                Đơn hàng đã được gửi thành công — <strong>Hãy kiểm tra</strong>
-              </Alert>
-            )}
+              {showAlert && (
+                <Alert severity="success">
+                  <AlertTitle>Thành công</AlertTitle>
+                  Đơn hàng đã được gửi thành công — <strong>Hãy kiểm tra</strong>
+                </Alert>
+              )}
             </div>
-            
+
           </div>
-          
+
         </div>
       </div>
     </Box>

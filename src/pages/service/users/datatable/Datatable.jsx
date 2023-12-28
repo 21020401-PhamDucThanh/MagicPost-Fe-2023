@@ -50,7 +50,6 @@ const Datatable = () => {
   const fetchData = async () => {
     try {
       const token = localStorage.getItem("token"); // Lấy token từ localStorage
-
       const response = await axios.get("http://localhost:8080/users/all", {
         headers: {
           Authorization: `Bearer ${token}`, // Sử dụng template literal để chèn token vào header Authorization
