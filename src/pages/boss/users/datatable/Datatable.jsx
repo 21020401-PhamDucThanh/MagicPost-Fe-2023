@@ -52,9 +52,9 @@ const Datatable = () => {
         >
           <span className="link">Tạo nhân viên mới</span>
         </a>
-        {/* <Link to="/users/new" className="link">
+        <Link to="/boss/New" className="link">
           Add New
-        </Link> */}
+        </Link>
       </div>
       <DataGrid
         className="datagrid"

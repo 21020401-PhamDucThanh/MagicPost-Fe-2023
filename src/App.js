@@ -57,7 +57,7 @@ function App() {
           <Route path="profile" element={<BossProfile />} />
           <Route path="users" element={<BossUsers />} />
           <Route path="analytics" element={<BossAnalytics />} />
-          <Route path="create" element={<BossCreate />} />
+          <Route path="New" element={<BossCreate />} />
           <Route path="list" element={<BossListOrder />} />
           <Route path="edit_profile" element={<BossEditProfile />} />
           <Route path="list" element={<BossListOrder />} />
