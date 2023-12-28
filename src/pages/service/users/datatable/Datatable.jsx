@@ -70,7 +70,7 @@ const Datatable = () => {
       <div className="datatableTitle">
         Danh sách nhân viên
 
-        <Link to="/create" className="link">
+        <Link to="/service/New" className="link">
           Add New
         </Link>
       </div>

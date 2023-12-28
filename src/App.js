@@ -13,7 +13,7 @@ import Service from "./pages/service/home/Service";
 import Profile from "./pages/service/profile/Profile"
 import EditProfile from "./pages/service/profile/editProfile/EditProfile"
 import Users from "./pages/service/users/Users"
-import Create from "./pages/service/new/New"
+import New from "./pages/service/new/New";
 import Transport from "./pages/service/transport/Transport"
 import ListOrder from "./pages/service/list_order/ListOrder"
 import Order from "./pages/service/order/Order"
@@ -45,7 +45,7 @@ function App() {
           <Route index element={<Service />} />
           <Route path="profile" element={<Profile />} />
           <Route path="users" element={<Users />} />
-          <Route path="create" element={<Create />} />
+          <Route path="New" element={<New />} />
           <Route path="order" element={<Order />} />
           <Route path="list" element={<ListOrder />} />
           <Route path="edit_profile" element={<EditProfile />} />

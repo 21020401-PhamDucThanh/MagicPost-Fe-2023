@@ -1,77 +1,258 @@
-.new {
+.order {
+  display: flex;
   width: 100%;
   display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
 
-  .newContainer {
-    flex: 6;
+  .orderContainer {
+      margin-top: 2rem;
+      flex: 6;
 
-    .top,
-    .bottom {
-      -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-      box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-      padding: 10px;
-      margin: 20px;
-      display: flex;
-
-      h1 {
-        color: lightgray;
-        font-size: 20px;
-      }
-
-      .left {
-        flex: 1;
-        text-align: center;
-
-        img {
-          width: 100px;
-          height: 100px;
-          border-radius: 50%;
-          object-fit: cover;
-        }
-      }
-
-      .right {
-        flex: 2;
-
-        form {
+      .top {
+          padding: 20px;
           display: flex;
-          flex-wrap: wrap;
-          gap: 30px;
-          justify-content: space-around;
+          gap: 20px;
 
-          .formInput {
-            width: 40%;
+          .left,.right {
+              flex: 2;
+              box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+              padding: 20px;
+              position: relative;
 
-            label {
+              .editButton {
+                  position: absolute;
+                  top: 0;
+                  right: 0;
+                  padding: 5px;
+                  font-size: 12px;
+                  color: #7451f8;
+                  background-color: #7551f818;
+                  cursor: pointer;
+                  border-radius: 0px 0px 0px 5px;
+              }
+
+              .item {
+                  display: flex;
+                  gap: 20px;
+
+                  .itemImg {
+                      width: 100px;
+                      height: 100px;
+                      border-radius: 50%;
+                      object-fit: cover;
+                  }
+
+                  .details {
+                      .itemTitle {
+                          margin-bottom: 10px;
+                          color: #555;
+                      }
+                      
+
+                      .detailItem {
+                          margin-bottom: 10px;
+                          font-size: 14px;
+                          display: flex;
+                          align-items: center;
+                          gap: 10px;
+
+                          .input {
+                              line-height: 28px;
+                              border: 2px solid transparent;
+                              border-bottom-color: #777;
+                              padding: .2rem 0;
+                              outline: none;
+                              background-color: transparent;
+                              color: #0d0c22;
+                              transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+                              width: 150px; /* Độ rộng của input */
+                              height: 50px; /* Độ cao của input */
+                              margin-right: 10px; /* Thêm khoảng cách ở bên phải của input */
+                          
+                          
+                             }
+                             
+                             .input:focus, input:hover {
+                              outline: none;
+                              padding: .2rem 1rem;
+                              border-radius: 1rem;
+                              border-color: #7a9cc6;
+                             }
+                             
+                             .input::placeholder {
+                              color: #777;
+                             }
+                             
+                             .input:focus::placeholder {
+                              opacity: 0;
+                              transition: opacity .3s;
+                             }
+
+
+                             .longinput {
+                              line-height: 28px;
+                              border: 2px solid transparent;
+                              border-bottom-color: #777;
+                              padding: .2rem 0;
+                              outline: none;
+                              background-color: transparent;
+                              color: #0d0c22;
+                              transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+                              width: 477px; /* Độ rộng của input */
+                              height: 50px; /* Độ cao của input */
+                              margin-right: 10px; /* Thêm khoảng cách ở bên phải của input */
+                          
+                          
+                             }
+                             
+                             .longinput:focus, .longinput:hover {
+                              outline: none;
+                              padding: .2rem 1rem;
+                              border-radius: 1rem;
+                              border-color: #7a9cc6;
+                             }
+                             
+                             .longinput::placeholder {
+                              color: #777;
+                             }
+                             
+                             .longinput:focus::placeholder {
+                              opacity: 0;
+                              transition: opacity .3s;
+                             }
+                          
+                          .itemKey {
+                              font-weight: bold;
+                              color: gray;
+                              margin-right: 15px;
+                              display: block;
+                              align-items: center;
+
+
+                          }
+
+                          .detailItem>div {
+                              flex-grow: 1;
+                          }
+
+                          .itemValue {
+                              font-weight: 300;
+                          }
+                      }
+                  }
+              }
+          }
+
+          .right {
+              flex: 2;
+              box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+              padding: 20px;
+              position: relative;
+
+              .editButton {
+                  position: absolute;
+                  top: 0;
+                  right: 0;
+                  padding: 5px;
+                  font-size: 12px;
+                  color: #7451f8;
+                  background-color: #7551f818;
+                  cursor: pointer;
+                  border-radius: 0px 0px 0px 5px;
+              }
+
+              .item {
+                  display: flex;
+                  gap: 20px;
+
+                  .itemImg {
+                      width: 100px;
+                      height: 100px;
+                      border-radius: 50%;
+                      object-fit: cover;
+                  }
+
+                  .details {
+                      .itemTitle {
+                          margin-bottom: 10px;
+                          color: #555;
+                      }
+
+                      .detailItem {
+                          margin-bottom: 10px;
+                          font-size: 14px;
+                          display: flex;
+                          align-items: center;
+                          gap: 10px;
+
+
+                          .itemKey {
+                              font-weight: bold;
+                              color: gray;
+                              margin-right: 15px;
+                              display: block;
+                              align-items: center;
+
+
+                          }
+
+                          .detailItem>div {
+                              flex-grow: 1;
+                          }
+
+                          .itemValue {
+                              font-weight: 300;
+                          }
+                      }
+                  }
+              }
+          }
+      }
+
+      .bottom {
+          box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+          padding: 20px;
+          margin: 10px 20px;
+      }
+      .details {
+          .itemTitle {
+              margin-bottom: 10px;
+              color: #555;
+          }
+
+          .detailItem {
+              margin-bottom: 10px;
+              font-size: 14px;
               display: flex;
               align-items: center;
               gap: 10px;
 
-              .icon {
-                cursor: pointer;
+
+              .itemKey {
+                  font-weight: bold;
+                  color: gray;
+                  margin-right: 15px;
+                  display: block;
+                  align-items: center;
+
+
               }
-            }
 
-            input {
-              width: 100%;
-              padding: 5px;
-              border: none;
-              border-bottom: 1px solid gray;
-            }
-          }
+              .detailItem>div {
+                  flex-grow: 1;
+              }
 
-          button {
-            width: 150px;
-            padding: 10px;
-            border: none;
-            background-color: teal;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
+              .itemValue {
+                  font-weight: 300;
+              }
           }
-        }
       }
-    }
+
+      .title {
+          font-size: 16px;
+          margin-bottom: 20px;
+      }
   }
 }
