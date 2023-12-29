@@ -45,7 +45,7 @@ const Profile = () => {
       <div className="profileContainer">
         <div className="top">
           <div className="left">
-            <Link to="/service/edit_profile">
+            <Link to="/boss/edit_profile">
               <div className="editButton">Chỉnh sửa</div>
             </Link>
 
