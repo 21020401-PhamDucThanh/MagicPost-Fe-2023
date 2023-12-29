@@ -6,9 +6,7 @@ import BossCreate from "./pages/boss/new/New"
 import BossListOrder from "./pages/boss/list_order/ListOrder"
 import BossUsers from "./pages/boss/users/Users"
 
-
-
-import Service from "./pages/service/home/Service";
+import Service from "./pages/service/order/Order";
 import Profile from "./pages/service/profile/Profile"
 import EditProfile from "./pages/service/profile/editProfile/EditProfile"
 import Users from "./pages/service/users/Users"

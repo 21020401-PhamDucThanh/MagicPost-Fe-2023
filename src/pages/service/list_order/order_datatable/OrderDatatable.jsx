@@ -6,11 +6,11 @@ import axios from "axios";
 
 const Datatable = () => {
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "_id", headerName: "ID", width: 150 },
     {
       field: "nameReceiver",
       headerName: "Người nhận",
-      width: 150,
+      width: 120,
       editable: true,
     },
     {
@@ -28,7 +28,7 @@ const Datatable = () => {
     {
       field: "type",
       headerName: "Loại hàng",
-      width: 210,
+      width: 100,
       editable: true,
     },
     {
@@ -42,6 +42,22 @@ const Datatable = () => {
       headerName: "Tình trạng đơn hàng",
       width: 170,
       editable: true,
+    },
+    {
+      field: "location",
+      headerName: "Vị trí đơn hàng",
+      width: 170,
+      editable: true,
+      valueGetter: (params) => {
+        if (params.row && params.row.location) {
+          const lastIndex = params.row.location.length - 1;
+          // Xác định thuộc tính cụ thể trong object, ví dụ: params.row.location[lastIndex].propertyName
+          const propertyValue = lastIndex >= 0 ? params.row.location[lastIndex].address : "Không có vị trí";
+          return propertyValue;
+        } else {
+          return "Dữ liệu không hợp lệ";
+        }
+      },
     },
   ];
 
@@ -84,7 +100,7 @@ const Datatable = () => {
         rows={gridRows}
         columns={columns}
         pagination
-        pageSize={5}
+        pageSize={9}
         checkboxSelection
         disableSelectionOnClick
       />

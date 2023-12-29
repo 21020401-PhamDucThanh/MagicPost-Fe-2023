@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 const Profile = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [role, setRole] = useState("");
+  const [phone, setPhone] = useState("");
   const [age, setAge] = useState("");
   const [userId, setUserId] = useState("");
 
@@ -26,11 +26,11 @@ const Profile = () => {
         const user = response.data.data;
         console.log(user);
 
-        const { name, email, role, age } = user;
+        const { name, email, phone, age } = user;
 
         setName(name);
         setEmail(email);
-        setRole(role);
+        setPhone(phone);
         setAge(age);
       })
       .catch((error) => {
@@ -72,13 +72,7 @@ const Profile = () => {
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Số điện thoại:</span>
-                  <span className="itemValue">0338593921</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Chức vụ: </span>
-                  <span className="itemValue">
-                    {role === "ADMIN" ? "Nhân viên quản lí" : role === "SUPER-ADMIN" ? "Lãnh đạo" : "Nhân viên"}
-                  </span>
+                  <span className="itemValue">0338593926</span>
                 </div>
               </div>
             </div>

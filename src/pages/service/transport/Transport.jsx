@@ -25,6 +25,7 @@ export default function Transport() {
     const [name, setName] = useState({});
 
 
+
     const handleOptionChange = (event, optionName) => {
         const value = event.target.value;
         setSelectedOptions((prevOptions) => ({
@@ -34,6 +35,11 @@ export default function Transport() {
     };
 
     const handleConfirm = () => {
+        const token = localStorage.getItem("token");
+        const headers = {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        };
         const allOptionsSelected = Object.values(selectedOptions).every(
             (value) => value !== ''
         );
@@ -56,7 +62,7 @@ export default function Transport() {
             };
 
             axios
-                .post(`http://localhost:8080/transaction/${orderId}`, data)
+                .post(`http://localhost:8080/transaction/update/${orderId}`, data, { headers })
                 .then((response) => {
                     // Handle success
                     console.log(data);
@@ -200,11 +206,9 @@ export default function Transport() {
                                             >
                                                 <MenuItem value={'Hoàn Kiếm, Hà Nội'}>Hoàn Kiếm, Hà Nội</MenuItem>
                                                 <MenuItem value={'Cầu Giấy, Hà Nội'}>Cầu Giấy, Hà Nội</MenuItem>
-                                                <MenuItem value={'Cầu Giấy, Hà Nội'}>Cầu Giấy, Hà Nội</MenuItem>
-                                                <MenuItem value={'Cầu Giấy, Hà Nội'}>Cầu Giấy, Hà Nội</MenuItem>
-                                                <MenuItem value={'Cầu Giấy, Hà Nội'}>Cầu Giấy, Hà Nội</MenuItem>
-                                                <MenuItem value={'Cầu Giấy, Hà Nội'}>Cầu Giấy, Hà Nội</MenuItem>
-
+                                                <MenuItem value={'Đống Đa, Hà Nội'}>Đống Đa, Hà Nội</MenuItem>
+                                                <MenuItem value={'Kim Bảng, Hà Nam'}>Kim Bảng, Hà Nam</MenuItem>
+                                                <MenuItem value={'Nho Quan, Ninh Bình'}>Nho Quan, Ninh Bìnhi</MenuItem>
                                             </Select>
                                         </FormControl>
                                     </div>
@@ -215,8 +219,8 @@ export default function Transport() {
                                         severity="success"
                                         sx={{ marginTop: '16px', display: showSuccessAlert ? 'block' : 'none' }}
                                     >
-                                        <AlertTitle>Success</AlertTitle>
-                                        This is a success alert — <strong>check it out!</strong>
+                                        <AlertTitle>Thành công!</AlertTitle>
+                                         Vui lòng— <strong>Hãy kiểm tra trạng thái</strong>
                                     </Alert>
 
                                 </div>
