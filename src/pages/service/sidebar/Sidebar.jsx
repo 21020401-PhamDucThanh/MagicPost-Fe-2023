@@ -61,7 +61,7 @@ export default function Sidebar() {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap component="div">
-          Clipped drawer
+          MagicPost
         </Typography>
       </Toolbar>
       </AppBar>

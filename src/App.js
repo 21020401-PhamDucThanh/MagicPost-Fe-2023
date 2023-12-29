@@ -1,8 +1,7 @@
 import "./App.css";
-import BossHome from "./pages/boss/home/Boss";
+import BossHome from "./pages/boss/list_order/ListOrder";
 import BossProfile from "./pages/boss/profile/Profile"
 import BossEditProfile from "./pages/boss/profile/editProfile/EditProfile"
-import BossAnalytics from "./pages/boss/analytics/Analytics"
 import BossCreate from "./pages/boss/new/New"
 import BossListOrder from "./pages/boss/list_order/ListOrder"
 import BossUsers from "./pages/boss/users/Users"
@@ -56,7 +55,6 @@ function App() {
           <Route index element={<BossHome />} />
           <Route path="profile" element={<BossProfile />} />
           <Route path="users" element={<BossUsers />} />
-          <Route path="analytics" element={<BossAnalytics />} />
           <Route path="New" element={<BossCreate />} />
           <Route path="list" element={<BossListOrder />} />
           <Route path="edit_profile" element={<BossEditProfile />} />
