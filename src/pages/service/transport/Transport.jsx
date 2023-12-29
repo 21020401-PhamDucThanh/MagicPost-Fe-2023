@@ -6,11 +6,14 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import AlertTitle from '@mui/material/AlertTitle';
+import Alert from '@mui/material/Alert';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Sidebar from '../sidebar/Sidebar';
 
 export default function Transport() {
+    const [showSuccessAlert, setShowSuccessAlert] = useState(false);
     const [selectedOptions, setSelectedOptions] = useState({});
     const [orderId, setOrderId] = useState('');
     const [nameReceiver, setReceiverName] = useState('');
@@ -18,6 +21,9 @@ export default function Transport() {
     const [destinationAddress, setDestinationAddress] = useState('');
     const [status, setStatus] = useState('');
     const [location, setLocation] = useState({});
+    const [address, setAddress] = useState({});
+    const [name, setName] = useState({});
+
 
     const handleOptionChange = (event, optionName) => {
         const value = event.target.value;
@@ -33,12 +39,37 @@ export default function Transport() {
         );
 
         if (allOptionsSelected) {
-            alert('Tất cả các ô đã được chọn');
-            window.location.reload(); // Reload trang
-        } else {
-            alert('Vui lòng chọn tất cả các ô');
+            const newLocationItem = {
+                location: name,
+                address: address,
+                companyId: "657b112c41e1190ecdf1abda",
+                time: new Date().toString()
+            };
+
+            const updatedLocationArray = [...location, newLocationItem];
+
+            setLocation(updatedLocationArray);
+
+            const data = {
+                location: updatedLocationArray,  // Make sure it matches the API structure
+                status: status,
+            };
+
+            axios
+                .post(`http://localhost:8080/transaction/${orderId}`, data)
+                .then((response) => {
+                    // Handle success
+                    console.log(data);
+                    setShowSuccessAlert(true); // Show the success alert
+
+                })
+                .catch((error) => {
+                    // Handle error
+                    console.error(error);
+                });
         }
     };
+
 
     const handleOrderIdChange = (event) => {
         setOrderId(event.target.value);
@@ -124,11 +155,13 @@ export default function Transport() {
                                                 autoWidth
                                                 label="Vận chuyển"
                                                 sx={{ marginRight: '128px' }}
-                                                value={selectedOptions.transportType || ''}
-                                                onChange={(event) => handleOptionChange(event, 'transportType')}
+                                                value={status}
+                                                onChange={(event) => setStatus(event.target.value)}
                                             >
                                                 <MenuItem value={'Giao hàng'}>Giao hàng</MenuItem>
                                                 <MenuItem value={'Hoàn trả hàng'}>Hoàn trả hàng</MenuItem>
+                                                <MenuItem value={'Nhận hàng'}>Nhận hàng</MenuItem>
+
                                             </Select>
                                         </FormControl>
                                     </div>
@@ -142,11 +175,11 @@ export default function Transport() {
                                                 autoWidth
                                                 label="Vận chuyển"
                                                 sx={{ marginRight: '128px' }}
-                                                value={selectedOptions.locationType || ''}
-                                                onChange={(event) => handleOptionChange(event, 'locationType')}
+                                                value={name}
+                                                onChange={(event) => setName(event.target.value)}
                                             >
-                                                <MenuItem value={'Đến điểm giao dịch'}>Đến điểm giao dịch</MenuItem>
-                                                <MenuItem value={'Đến điểm tập kết'}>Đến điểm tập kết</MenuItem>
+                                                <MenuItem value={'Điểm giao dịch'}>Điểm giao dịch</MenuItem>
+                                                <MenuItem value={'Điểm tập kết'}>Điểm tập kết</MenuItem>
                                             </Select>
                                         </FormControl>
                                     </div>
@@ -162,17 +195,30 @@ export default function Transport() {
                                                 autoWidth
                                                 label="Vận chuyển"
                                                 sx={{ marginRight: '128px', minWidth: 300 }}
-                                                value={selectedOptions.address || ''}
-                                                onChange={(event) => handleOptionChange(event, 'address')}
+                                                value={address}
+                                                onChange={(event) => setAddress(event.target.value)}
                                             >
                                                 <MenuItem value={'Hoàn Kiếm, Hà Nội'}>Hoàn Kiếm, Hà Nội</MenuItem>
                                                 <MenuItem value={'Cầu Giấy, Hà Nội'}>Cầu Giấy, Hà Nội</MenuItem>
+                                                <MenuItem value={'Cầu Giấy, Hà Nội'}>Cầu Giấy, Hà Nội</MenuItem>
+                                                <MenuItem value={'Cầu Giấy, Hà Nội'}>Cầu Giấy, Hà Nội</MenuItem>
+                                                <MenuItem value={'Cầu Giấy, Hà Nội'}>Cầu Giấy, Hà Nội</MenuItem>
+                                                <MenuItem value={'Cầu Giấy, Hà Nội'}>Cầu Giấy, Hà Nội</MenuItem>
+
                                             </Select>
                                         </FormControl>
                                     </div>
                                     <Button size="large" variant="contained" disableElevation sx={{ background: "#7451f8", marginTop: "10%" }} onClick={handleConfirm}>
                                         Xác nhận
                                     </Button>
+                                    <Alert
+                                        severity="success"
+                                        sx={{ marginTop: '16px', display: showSuccessAlert ? 'block' : 'none' }}
+                                    >
+                                        <AlertTitle>Success</AlertTitle>
+                                        This is a success alert — <strong>check it out!</strong>
+                                    </Alert>
+
                                 </div>
                             </div>
                         </div>
@@ -217,23 +263,23 @@ export default function Transport() {
                                         />
                                     </div>
                                     <div className="detailItem">
-  <span className="itemKey">Địa chỉ điểm</span>
-  {location && location[0] ? (
-    <TextField
-      disabled
-      id="outlineddisabled"
-      sx={{ m: 2, width: '75%' }}
-      value={location[location.length - 1].address}
-    />
-  ) : (
-    <TextField
-      disabled
-      id="outlineddisabled"
-      sx={{ m: 2, width: '75%' }}
-    //   value=""
-    />
-  )}
-</div>
+                                        <span className="itemKey">Địa chỉ điểm</span>
+                                        {location && location[0] ? (
+                                            <TextField
+                                                disabled
+                                                id="outlineddisabled"
+                                                sx={{ m: 2, width: '75%' }}
+                                                value={location[location.length - 1].address}
+                                            />
+                                        ) : (
+                                            <TextField
+                                                disabled
+                                                id="outlineddisabled"
+                                                sx={{ m: 2, width: '75%' }}
+                                            //   value=""
+                                            />
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
