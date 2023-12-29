@@ -17,7 +17,7 @@ const Print = () => {
       />
       <div ref={componentRef}>
         {/* Remove the image tag if you don't want to display the image */}
-        <img src="/images/post3.png" alt="" className="hiddenOnScreen" />
+        <img src="/images/post7.png" alt="" className="hiddenOnScreen" />
       </div>
     </div>
   );
