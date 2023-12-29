@@ -139,9 +139,9 @@ export default function Login() {
             </label>
             <input
               id="password"
-              type="password"
+              // type="password"
               name="password"
-              className="formcontrol"
+              className="form-control"
               placeholder="Nhập password"
               value={password}
               onChange={handleChangePassword}
