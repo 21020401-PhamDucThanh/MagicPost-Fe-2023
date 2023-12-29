@@ -208,7 +208,7 @@ export default function Transport() {
                                         />
                                     </div>
                                     <div className="detailItem">
-                                        <span className="itemKey">Vị trí đơn hàng</span>
+                                        <span className="itemKey">Status</span>
                                         <TextField
                                             disabled
                                             id="outlined-disabled"
@@ -217,16 +217,23 @@ export default function Transport() {
                                         />
                                     </div>
                                     <div className="detailItem">
-                                        <span className="itemKey">Địa chỉ điểm</span>
-                                        {location && location[0] && (
-                                            <TextField
-                                                disabled
-                                                id="outlineddisabled"
-                                                sx={{ m: 2, width: '75%' }}
-                                                value={location[location.length - 1].address}
-                                            />
-                                        )}
-                                    </div>
+  <span className="itemKey">Địa chỉ điểm</span>
+  {location && location[0] ? (
+    <TextField
+      disabled
+      id="outlineddisabled"
+      sx={{ m: 2, width: '75%' }}
+      value={location[location.length - 1].address}
+    />
+  ) : (
+    <TextField
+      disabled
+      id="outlineddisabled"
+      sx={{ m: 2, width: '75%' }}
+    //   value=""
+    />
+  )}
+</div>
                                 </div>
                             </div>
                         </div>

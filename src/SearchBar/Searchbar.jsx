@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import './Searchbar.css';
 import MyTimeline from './MyTimeline';
 import axios from 'axios';
@@ -7,7 +7,17 @@ function SearchBar() {
   const [showTimeline, setShowTimeline] = useState(false);
   const [id, setID] = useState("");
   const [timelineData, setTimelineData] = useState(null);
+  const [noOrderFound, setNoOrderFound] = useState(false);
 
+  const resetState = () => {
+    setShowTimeline(false);
+    setTimelineData(null);
+    setNoOrderFound(false);
+  };
+
+  useEffect(() => {
+    resetState(); // Gọi resetState mỗi khi id thay đổi
+  }, [id]);
   const handleChangeId = (e) => {
     setID(e.target.value);
   };
@@ -20,20 +30,18 @@ function SearchBar() {
     };
 
     try {
-      const response = await axios.get(
-        `http://localhost:8080/transaction/${id}`, // Sử dụng ID trong endpoint
-        data
-      );
-
-      if (response.status === 200 ) {
+      const response = await axios.get(`http://localhost:8080/transaction/${id}`);
+  
+      if (response.status === 200) {
         console.log("Có đơn hàng ", response.data.data.location);
-        setTimelineData(response.data.data.location || []); // Set timelineData với mảng hoặc mảng trống nếu không có dữ liệu
-        setShowTimeline(true); // Hiển thị Timeline sau khi tìm kiếm thành công
-      } else {
-        alert("Lỗi search");
+        setTimelineData(response.data.data.location || []);
+        setShowTimeline(true);
+        setNoOrderFound(false); // Đặt trạng thái không có đơn hàng thành false
       }
     } catch (error) {
-      console.error("Search fail", error);
+      // Xử lý lỗi
+      console.error("Lỗi khi tìm kiếm đơn hàng:", error);
+      setNoOrderFound(true); // Đặt trạng thái không có đơn hàng thành true
     }
   };
 
@@ -55,6 +63,9 @@ function SearchBar() {
       {showTimeline && timelineData && (
         <MyTimeline data={timelineData} />
       )} {/* Render the Timeline with data when showTimeline is true */}
+      {noOrderFound && (
+  <p style={{ color: 'red' }}>Không có đơn hàng nào có mã như vậy.</p>
+)}
     </div>
   );
 }
