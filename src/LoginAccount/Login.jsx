@@ -29,11 +29,11 @@ export default function Login() {
   const validateForm = () => {
     const error = {};
 
-    if (isEmptyValue(formValue.email)) {
-      error["email"] = "Email is required";
+    if (isEmptyValue(formValue.username)) {
+      error["username"] = "username is required";
     } else {
-      if (!isEmailValid(formValue.email)) {
-        error["email"] = "Email is invalid";
+      if (!isEmailValid(formValue.username)) {
+        error["username"] = "username is invalid";
       }
     }
 
@@ -75,13 +75,13 @@ export default function Login() {
         console.log("Login successful", response.data.data.role);
         navigate("/boss");
         const token = response.data.data.access_token;
-        const userId = response.data.data._id;
+        const userId = response.data.data.id;
         const role = response.data.data.role;
 
-         // Lấy _id của người dùng
+        // Lấy _id của người dùng
         localStorage.setItem("token", token);
         localStorage.setItem("userId", userId);
-        localStorage.setItem("role",role);
+        localStorage.setItem("role", role);
       } else if (
         response.status === 200 &&
         (response.data.data.role === "ADMIN" ||
@@ -94,9 +94,9 @@ export default function Login() {
         localStorage.setItem("token", token);
         localStorage.setItem("userId", userId);
         const role = response.data.data.role;
-        localStorage.setItem("role",role);
+        localStorage.setItem("role", role);
 
-        console.log(userId);       
+        console.log(userId);
       } else {
         alert("Login failed");
       }
@@ -114,34 +114,34 @@ export default function Login() {
   return (
     <div className="Login-page">
       <div className="Login-form-container">
-        <h1 className="title">Login account</h1>
+        <h1 className="title">Đăng nhập tài khoản của bạn:</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="email" className="form-label">
-              Email address
+            <label htmlFor="username" className="form-label">
+              Tên đăng nhập
             </label>
             <input
-              id="email"
-              name="email"
+              id="username"
+              name="username"
               className="form-control"
-              placeholder="Nhập email"
+              placeholder="Nhập username"
               value={username}
               onChange={handleChangeUsername}
             />
-            {formError.email && (
-              <div className="error-feedback">{formError.email}</div>
+            {formError.username && (
+              <div className="error-feedback">{formError.username}</div>
             )}
           </div>
 
           <div className="form-group">
             <label htmlFor="password" className="form-label">
-              Password
+              Mật khẩu:
             </label>
             <input
               id="password"
-              type="password"
+              // type="password"
               name="password"
-              className="formcontrol"
+              className="form-control"
               placeholder="Nhập password"
               value={password}
               onChange={handleChangePassword}
@@ -151,11 +151,8 @@ export default function Login() {
             )}
           </div>
           <button type="submit" className="submit-btn" onClick={handleSubmit}>
-            Login
+            Đăng nhập ngay
           </button>
-          <Link to="/RegisterAccount">
-            <div className="register">Chưa có tài khoản, Đăng ký ngay</div>
-          </Link>
         </form>
       </div>
     </div>

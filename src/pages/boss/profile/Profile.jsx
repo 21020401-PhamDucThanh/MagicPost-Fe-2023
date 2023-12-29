@@ -1,10 +1,44 @@
 import "./profile.scss";
 import { Link } from "react-router-dom";
-import Chart from "../components/chart/Chart";
-import List from "../components/table/Table";
 import Sidebar from "../sidebar/Sidebar";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 const Profile = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState("");
+  const [age, setAge] = useState("");
+  const [userId, setUserId] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+    console.log(userId);
+
+    axios
+      .get(`http://localhost:8080/users/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        const user = response.data.data;
+        console.log(user);
+
+        const { name, email, role, age } = user;
+
+        setName(name);
+        setEmail(email);
+        setRole(role);
+        setAge(age);
+      })
+      .catch((error) => {
+        console.error(error);
+        // Xử lý lỗi
+      });
+  }, []);
+
   return (
     <div className="profile">
       <Sidebar />
@@ -12,46 +46,44 @@ const Profile = () => {
         <div className="top">
           <div className="left">
             <Link to="/service/edit_profile">
-            <div className="editButton">Edit</div>
+              <div className="editButton">Chỉnh sửa</div>
             </Link>
-            
-            <h1 className="title">Information</h1>
+
+            <h1 className="title">Thông tin cá nhân</h1>
             <div className="item">
               <img
-                src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                src="\images\1.png"
                 alt=""
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">Jane Doe</h1>
+                <h1 className="itemTitle">{name}</h1>
                 <div className="detailItem">
                   <span className="itemKey">Email:</span>
-                  <span className="itemValue">janedoe@gmail.com</span>
+                  <span className="itemValue">{email}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Phone:</span>
-                  <span className="itemValue">+1 2345 67 89</span>
+                  <span className="itemKey">Tuổi:</span>
+                  <span className="itemValue">{age}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Address:</span>
+                  <span className="itemKey">Địa chỉ:</span>
+                  <span className="itemValue">Cầu Giấy - Hà Nội</span>
+                </div>
+                <div className="detailItem">
+                  <span className="itemKey">Số điện thoại:</span>
+                  <span className="itemValue">0338593921</span>
+                </div>
+                <div className="detailItem">
+                  <span className="itemKey">Chức vụ: </span>
                   <span className="itemValue">
-                    Elton St. 234 Garden Yd. NewYork
+                    {role === "ADMIN" ? "Nhân viên quản lí" : role === "SUPER-ADMIN" ? "Lãnh đạo" : "Nhân viên"}
                   </span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Country:</span>
-                  <span className="itemValue">USA</span>
                 </div>
               </div>
             </div>
           </div>
-          <div className="right">
-            <Chart aspect={3 / 1} title="User Spending ( Last 6 Months)" />
-          </div>
-        </div>
-        <div className="bottom">
-          <h1 className="title">Last Transactions</h1>
-          <List />
+          <div className="right"></div>
         </div>
       </div>
     </div>

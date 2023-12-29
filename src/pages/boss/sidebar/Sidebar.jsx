@@ -1,6 +1,6 @@
 import * as React from 'react';
 import "./sidebar.scss"
-import { useState, useContext, useRef } from 'react';
+import { useState, useContext, useRef, useEffect } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Drawer from '@mui/material/Drawer';
 import AppBar from '@mui/material/AppBar';
@@ -27,7 +27,21 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 const drawerWidth = 200;
 
 export default function Sidebar() {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    linkRef.current.click();
+  };
+  const role = localStorage.getItem("role");
+
   const linkRef = useRef(null);
+
+  const [userRole, setUserRole] = useState(role);
+
+  // Sử dụng useEffect để cập nhật userRole khi có thay đổi trong localStorage
+  useEffect(() => {
+    setUserRole(role);
+  }, [role]);
+
 
   const [isDrawerLarge, setIsDrawerLarge] = React.useState(true);
 
@@ -53,7 +67,7 @@ export default function Sidebar() {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap component="div">
-          Clipped drawer
+          MagicPost
         </Typography>
       </Toolbar>
       </AppBar>
@@ -92,12 +106,6 @@ export default function Sidebar() {
                   <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Danh sách đơn hàng</span>
                 </li>
               </Link>
-              <Link to="/boss/analytics" style={{ textDecoration: "none" }} ref={linkRef}>
-                <li style={{ display: 'flex', alignItems: 'center' }}>
-                  <InsertChartIcon className="icon" />
-                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Thống kê</span>
-                </li>
-              </Link>
               <hr />
               <Link to="/boss/users" style={{ textDecoration: "none" }} ref={linkRef}>
                 <li style={{ display: 'flex', alignItems: 'center' }}>
@@ -106,7 +114,7 @@ export default function Sidebar() {
                 </li>
               </Link>
               <hr />
-              <Link to="/boss/create" style={{ textDecoration: "none" }} ref={linkRef}>
+              <Link to="/boss/new" style={{ textDecoration: "none" }} ref={linkRef}>
                 <li style={{ display: 'flex', alignItems: 'center' }}>
                   <AddBusinessIcon className="icon" />
                   <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Tạo điểm mới</span>
@@ -119,10 +127,12 @@ export default function Sidebar() {
                   <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Thông tin cá nhân</span>
                 </li>
               </Link>
-              <Link to="/logout" style={{ textDecoration: "none" }} ref={linkRef}>
-                <li style={{ display: 'flex', alignItems: 'center' }}>
+              <Link to="/login" style={{ textDecoration: "none" }} ref={linkRef}>
+                <li style={{ display: "flex", alignItems: "center" }} onClick={handleLogout}>
                   <ExitToAppIcon className="icon" />
-                  <span style={{ marginLeft: '8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Đăng xuất</span>
+                  <span style={{ marginLeft: "8px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    Đăng xuất
+                  </span>
                 </li>
               </Link>
             </ul>
