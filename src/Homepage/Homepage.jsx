@@ -214,15 +214,15 @@ export default function Homepage() {
 
         <form action="#">
             <div className="input-box">
-                <input type="text" placeholder="Full Name"></input>
-                <input type="email" placeholder="Email Address"></input>
+                <input type="text" placeholder="Họ và tên"></input>
+                <input type="email" placeholder="Địa chỉ Email"></input>
             </div>
             <div className="input-box">
-                <input type="number" placeholder="Mobile Number"></input>
-                <input type="text" placeholder="Email Subject"></input>
+                <input type="number" placeholder="Số điện thoại"></input>
+                <input type="text" placeholder="Chủ đề"></input>
             </div>
-            <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
-            <input type="submit" value="Send Message" className="btn"></input>
+            <textarea name="" id="" cols="30" rows="10" placeholder="Gửi liên hệ"></textarea>
+            <input type="submit" value="Gửi cho chúng tôi" className="btn"></input>
         </form>
     </section>
 
