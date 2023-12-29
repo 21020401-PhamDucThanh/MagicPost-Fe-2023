@@ -80,7 +80,9 @@ export default function InputAdornments() {
       console.log('Data:', data);
       console.log('Headers:', headers);
 
-      await axios.post("http://localhost:8080/service-point", data, { headers });
+      await axios.post("http://localhost:8080/service-point", data, { headers }).catch((err) => {
+        console.log(err)
+      });
 
       setShowAlert(true);
       const timeoutId = setTimeout(() => {
