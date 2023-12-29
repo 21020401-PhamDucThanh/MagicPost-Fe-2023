@@ -26,4 +26,4 @@ Trong thư mục back-end, chạy lệnh npm run start để khởi động serv
 ### Front-end:
 Trong thư mục front-end, chạy lệnh npm start để khởi động toàn bộ trang web.
 ### Lưu ý: Đảm bảo rằng bạn đã cài đặt Node.js và npm trước khi chạy các lệnh trên.
-### Cảm ơn bạn đã quan tâm và đóng góp vào dự án!
+### Cảm ơn bạn đã quan tâm đến dự án!
