@@ -11,11 +11,11 @@ export default function Homepage() {
         <a href="#" className="logo">Magicpost</a>
 
         <nav className="navbar">
-            <a href="#home" className="active">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#contact">Contact</a>
-            <Link to="/Login" > <a href="#signin">Sign in</a>  </Link>
+            <a href="#home" className="active">Trang chủ</a>
+            <a href="#about">Về công ty</a>
+            <a href="#services">Dịch vụ</a>
+            <a href="#contact">Liên hệ</a>
+            <Link to="/Login" > <a href="#signin">Đăng nhập</a>  </Link>
             
         </nav>
 
@@ -25,14 +25,14 @@ export default function Homepage() {
 
     <section className="home" id="home">
         <div className="home-content">
-            <h3>Hello, I am</h3>
-            <h1>Pham Duc Thanh</h1>
+            <h3>Xin chào , chúng tôi là</h3>
+            <h1>Magicpost</h1>
             <p>
-                I'm a web developer who loves to create beautiful and functional websites
-                for people who want to make a difference in the world.
+            Chúng tôi là đối tác tin cậy của bạn trong lĩnh vực vận chuyển bưu phẩm. Với cam kết đem lại dịch vụ chuyển phát nhanh, an toàn và hiệu quả, chúng tôi tự hào là đối tác lý tưởng cho mọi nhu cầu vận chuyển của bạn.
+
+
             </p>
-            <p>Currently I'm a student of The UET-VNU, where I'm learning how to
-            create beautiful and functional websites using HTML, CSS, JavaScript, and WordPress.</p>
+            <p>Magicpost là một công ty chuyên nghiệp với hơn 10 năm kinh nghiệm trong ngành vận chuyển bưu phẩm. Chúng tôi đã xây dựng một hệ thống mạng lưới rộng khắp, kết hợp với công nghệ tiên tiến, để đảm bảo rằng bưu phẩm của bạn sẽ được vận chuyển một cách nhanh chóng và an toàn đến mọi địa điểm trên toàn thế giới.</p>
 
             <SearchBar />            
         </div>

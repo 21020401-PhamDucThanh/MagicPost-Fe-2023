@@ -139,7 +139,7 @@ export default function Login() {
             </label>
             <input
               id="password"
-              // type="password"
+              type="password"
               name="password"
               className="form-control"
               placeholder="Nhập password"

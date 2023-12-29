@@ -50,7 +50,7 @@ function SearchBar() {
       <form onSubmit={handleSearchSubmit}>
         <input
           type="text"
-          placeholder="Nhập từ khóa..."
+          placeholder="Nhập id đơn hàng"
           className='input'
           value={id}
           onChange={handleChangeId}
